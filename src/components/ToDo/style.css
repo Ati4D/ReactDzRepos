@@ -1,3 +1,6 @@
 .heading {
   color: dodgerblue;
 }
+.complete{
+  text-decoration: line-through;
+}

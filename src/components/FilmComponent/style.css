@@ -47,3 +47,15 @@
     border-bottom: 3px solid rgb(167, 117, 0);
     border-radius: 20px;
 }
+.r-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.dopen{
+    font-size: medium;
+}
+.dclose{
+    font-size: 0;
+}
