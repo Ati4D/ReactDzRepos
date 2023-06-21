@@ -1,18 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
+import FilterButton from './FilterButton';
 
-const FilterTodo = () => {
-
-  const hello = (e) => {
-    //alert('hello')
-    console.log(e.target);
-  };
-
+const FilterTodo = ({filter_map, filter, setFilter}) => {
+  const filter_names = Object.keys(filter_map);
+  const [selectedBtn, setSelectedBtn] = useState(filter_names[0]);
 
   return (
     <div>
-      <button onClick={() => { alert('Hello') }}>Show All</button>
-      <button onClick={hello}>Show active</button>
-      <button onClick={hello}>Show completed</button>
+      {filter_names.map(name => <FilterButton name={name} setFilter={setFilter} key={name} setBtn={setSelectedBtn} selectedBtn={selectedBtn}/>)}
     </div>
   );
 }

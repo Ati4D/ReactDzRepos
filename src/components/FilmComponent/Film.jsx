@@ -3,13 +3,7 @@ import classNames from 'classnames';
 
 const Film = ({name,year,image,director,description}) => {
     
-    const [buttonText, setButtonText] = useState('Details');
-
-    const open = ()=>{return buttonText === 'Details' ? false : true; };
-
-    const DetailsHandler = (event)=>{
-        setButtonText(buttonText === 'Details' ? 'X' : 'Details');
-    }
+    const [isOpened, setIsOpened] = useState(false);
 
     return (
         <div className='f-cont'>
@@ -17,8 +11,8 @@ const Film = ({name,year,image,director,description}) => {
             <img className='f-img' srcSet={image} alt={"\""+image+"\""} />
             <div>
                 <h5>{year}</h5>
-                <button onClick={(event)=>{DetailsHandler(event);}}>{buttonText}</button>
-                <div className={classNames({dopen: open()},{dclose: !open()})}>
+                <button onClick={()=>{setIsOpened(!isOpened)}}>{isOpened ? "X" : "Details"}</button>
+                <div className={classNames({dopen: (isOpened)},{dclose: !(isOpened)})}>
                     <h4>{"Director: "+director}</h4>
                     <p>{description}</p>
                 </div>

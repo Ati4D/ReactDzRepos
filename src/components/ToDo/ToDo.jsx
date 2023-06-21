@@ -1,39 +1,48 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import AddToDo from "./AddToDo";
 import FilterTodo from "./FilterTodo";
 import ToDoItem from "./ToDoItem";
 import { toDoItems } from "./toDoItems";
-import { v4 as uuidv4 } from "uuid";
 import './style.css';
+import tasksReducer from "./ToDoReducer";
 
 
 const ToDo = () => {
-  const [taskList, setTaskList] = useState(toDoItems);
-
+  const [taskList, dispatch] = useReducer(tasksReducer,toDoItems);
+  const [filter, setFilter] = useState("All");
 
   const addTask = (name) => {
-    let newTask = {
-      id: uuidv4(),
-      name,
-      completed: false,
-    };
-    setTaskList([...taskList, newTask]);
-  }
-
-  const toggleTaskCompleted = (id) => { 
-    const updatedTasks = taskList.map(task => {
-      if (task.id === id) {
-        return { ...task, completed: !task.completed }
-      }
-      return task;
+    dispatch({
+      type: 'added', 
+      name
     });
-      
-    setTaskList(updatedTasks);
+  }
+  const toggleTaskCompleted = (id) => { 
+    dispatch({
+      type: 'toggletaskcompleted', 
+      id
+    });
+  }
+  const deleteTask = (id) => { 
+    dispatch({
+      type: 'delete', 
+      id
+    });
+  }
+  const editTask = (id, name)=>
+  {
+    dispatch({
+      type: 'edit', 
+      name,
+      id
+    });
   }
 
-  const deleteTask = (id) => { 
-    setTaskList(taskList.filter(task => task.id !== id));
-  }
+  const filter_map = {
+    All:()=>true,
+    Active: (task)=>!task.completed,
+    Completed: (task)=>task.completed
+  };
 
   const tasksWord = taskList.length === 1 ? 'task' : 'tasks';
   const taskHeading = `${taskList.length} ${tasksWord}`;
@@ -42,16 +51,21 @@ const ToDo = () => {
     <>
       <h2 className="heading">Todo List</h2>
       <AddToDo addTask={addTask} />
-      <FilterTodo />
+      <FilterTodo 
+      filter_map={filter_map} 
+      filter={filter}
+      setFilter={setFilter}
+      />
 
       <div>
         <h3>{taskHeading}</h3>
         <ul>
-          {taskList.map((task) => (
+          {taskList.filter(filter_map[filter]).map((task) => (
             <ToDoItem
               task={task}
               toggleTaskCompleted={toggleTaskCompleted}
               deleteTask={deleteTask}
+              editTask={editTask}
               key={task.id}
             />
           ))}
