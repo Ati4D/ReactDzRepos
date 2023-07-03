@@ -25,7 +25,7 @@ const FilmsComponent = () => {
     return (
         <div className='f-cont-main'>
             <div className='r-cont'>
-                <SerchFilmsForm/>
+                <SerchFilmsForm setFilms={setFilmsList}/>
                 <AddFilmForm addFilm = {addFilm}/>
             </div>
             <FilmList Films={filmsList}/>
