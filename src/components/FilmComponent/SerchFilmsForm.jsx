@@ -22,9 +22,7 @@ const SerchFilmsForm = ({ setFilms }) => {
         query += (type ? "&type=" + type : '');
         query += (year ? "&y=" + year : '');
 
-        console.log('q=' + query);
         const res = (await axios.get(query));
-        console.log(res);
         if (res.data.Response === "True")
             setFilms(res.data.Search);
         else setName('Error query');

@@ -1,0 +1,10 @@
+.cont{
+    margin: 10px;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+.main{
+    display: flex
+}
