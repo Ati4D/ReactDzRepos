@@ -10,7 +10,7 @@ const Footer = () => {
             <div>
                 <h3>Liked Films: </h3>
                 <div className='LFilms'>
-                    {films.map(film => <a href=''>{film.name}</a>)}
+                    {films.map(film => <a href='' key={film.name+film.year}>{film.name}</a>)}
                 </div>
             </div>
         </footer>
