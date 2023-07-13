@@ -10,6 +10,7 @@ import ThemeProvider from "./providers/ThemeProvider";
 import LikedFilmsProvider from "./providers/LikedFilmsProvider";
 import { useEffect, useState } from "react";
 import Footer from "./components/Footer/Footer";
+import Counters from "./components/Counters/Counters";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -36,9 +37,10 @@ function App() {
                 <Route path=":id" element={<UserInfo />} />
               </Route>
 
+              <Route path="/counters" element={<Counters />} />
               <Route path="*" element={<h1>Page not found!</h1>} />
             </Routes>
-            <Footer/>
+            <Footer />
           </LikedFilmsProvider>
         </ThemeProvider>
       </UsersContext.Provider>

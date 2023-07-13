@@ -13,6 +13,7 @@ const Header = () => {
         <header className={theme}>
             <NavLink className='btn' to="/">Home</NavLink>
             <NavLink className='btn' to="/counter">Counter</NavLink>
+            <NavLink className='btn' to="/counters">Counters</NavLink>
             <NavLink className='btn' to="/films">Films</NavLink>
             <NavLink className='btn' to="/users" >Users</NavLink>
             <a>{theme === 'dark' ? <FontAwesomeIcon icon={faMoon} className='d' onClick={setThemeLight} /> : <FontAwesomeIcon icon={faSun} className='l' onClick={setThemeDark} />}</a>

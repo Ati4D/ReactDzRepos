@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Forma from '../Forms/Forma';
 import Forms from '../Forms/Forms';
+import Timer from './Timer';
+import Video from './Video';
 
 const Counter = () => {
   const [count, setCount] = useState(0);
@@ -15,6 +17,13 @@ const Counter = () => {
   };
 
 
+  const ref = useRef(0);
+  const handleClick = () => {
+    ref.current = ref.current + 1;
+    alert(ref.current);
+  }
+
+
   return (
     <div>
       <div>
@@ -23,8 +32,17 @@ const Counter = () => {
         <button onClick={() => { increment() }}>+</button>
       </div>
 
-      <Forma/>
-      <Forms/>
+      <hr />
+
+      <button onClick={handleClick}>Click me</button>
+
+      <Timer />
+      <hr />
+      <Video/>
+      <hr />
+
+      <Forma />
+      <Forms />
     </div>
   );
 }
